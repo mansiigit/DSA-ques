@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<algorithm>
+// k umber of elemets closest to x
+vector<int> k_closest_ele(vector<int>a,int k,int x)
+{
+    int h=a.size()-1;
+    int l=0;
+while (h >= l && h - l >= k)
+    {
+        if(x-a[l]>a[h]-x)
+        {
+            l++;
+        }
+        else
+        {
+            h--;
+        }
+    }
+   vector<int>ans;
+   for( int i=l;i<=h;i++)
+   {
+       ans.push_back(a[i]);
+   }
+   return ans;
+}
+int main()
+{
+    int k,x;
+    vector<int>a{1,2,3,4,5,6,7,8,9};
+    cout << "enter the value of k" <<endl;
+    cin >> k;
+    cout << "enter the number "<< endl;
+    cin >> x;
+    vector<int> closest_elements = k_closest_ele(a, k, x);
+
+    // Printing the closest elements
+    cout << "K closest elements to " << x << " are: ";
+    for (int num : closest_elements)
+    {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}

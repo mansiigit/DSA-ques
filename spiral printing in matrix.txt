@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+int main()
+{
+    vector<vector<int> >a{
+        {1,2,3},
+        {2,3,4},
+        {4,5,6}
+    };
+    int i;
+    int rows=a.size();
+    int cols=a[0].size();
+    int total_elements=rows*cols;
+    int startingrow=0;
+    int endingcol=cols-1;
+    int endingrow=rows-1;
+    int startingcol=0;
+    int count=0;
+    while(count<total_elements)
+    {
+        // print starting row
+        for(i=startingcol;i<=endingcol && count<total_elements ;i++)
+        {
+            cout << a[startingrow][i] << " ";
+            count ++;
+        }
+        startingrow++;
+        // print ending cols
+        for(i=startingrow;i<=endingrow;i++)
+        {
+            cout << a[i][endingcol] << " ";
+            count++;
+        }
+        endingcol--;
+        //print ending row
+        for(i=endingcol;i>=startingcol;i--)
+        {
+            cout << a[endingrow][i] << " ";
+            count ++;
+            
+        }
+        endingrow--;
+        //print starting column
+        for(i=endingrow;i>=startingrow;i--)
+        {
+            cout << a[i][startingcol] << " ";
+            count ++;
+        }
+        startingcol++;
+    }
+    return 0;
+    }

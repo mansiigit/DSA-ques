@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+int firstocc(vector<int>a,int x )
+{
+    int end=a.size()-1;
+    int start=0;
+    int ans=end;//learn this for sorted array
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(a[mid]>=x)
+        {
+            ans=mid;// this is the condition to search the first occurance 
+                     //as the 1st occ can only be there or find at the left position
+            end=mid-1;
+        }
+        else if(a[mid]<x)
+        {
+            start=mid+1;
+        }
+        else
+        {
+            end=mid-1;
+        }
+    }
+    return ans;
+}
+vector<int>k_closest_BS(vector<int>a,int k,int x)
+{
+    int h=firstocc(a,x);
+    int l=h-1;
+    while(k--)
+    {
+        if(l<0)// array l array k bahar jane lge mtlb l 1st ele pe hoto
+                //kewl h ko ++ kro taaki l -- krne pe bahar na chla jae
+        {
+            h++;
+        }
+        else if(x-a[l]>a[h]-x)//check which is lower in value in array and then increease that to increase the hign and low window
+        {
+            h++;
+        }
+        else if(h>a.size())//agr h last ele pe ho aur h++ krne pe bahar jae to kew; l-- kro taki h bahar na chala jae
+        {
+            l--;
+        }
+        else{
+            l--;
+        }
+        
+    }
+    vector<int>ans;
+    for(int i=l+1;i<=h-1;i++)//as this do not take the high and low position this take 1 more and 1 less respectively
+    {
+        ans.push_back(a[i]);
+    }
+    return ans;
+}
+int main()
+{
+    int k,x;
+    vector<int>a{1,2,3,4,5,6,7,8,9};
+    cout << "enter the value of k" <<endl;
+    cin >> k;
+    cout << "enter the number "<< endl;
+    cin >> x;
+    vector<int>closest_elements = k_closest_BS(a, k, x);// we need to create a closest_elements vector to store the retun 
+                                                        //vector from the above func
+
+    // Printing the closest elements
+    cout << k << "  closest elements to " << x << " are: ";
+    for (int num : closest_elements)//learn this for printing any vector
+    {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+int binpeak(int a[9],int size)
+{
+    int s= 0;
+    int e= size-1;
+   int  mid=s+(e-s)/2;
+    while(s<e)
+    {
+        
+        if (a[mid]<a[mid+1])// line a pe hai mid islia peak ele tmhara right side pe hoga so,search right
+        {
+            s=mid+1;
+        }
+        else // agr mid tmhara aage wale ele se chota nhi h to mtlb  yato wo peak hai ya peak uske left
+               // isilia end mid pe hoga taaki jb left me dhundho to is mid wale ko include kro
+        {
+            e=mid;
+        }
+         mid=s+(e-s)/2;
+}
+return e;
+}
+int main()
+{
+int a[9]={15,16,17,6,5,4,3,2,1};
+int size = 9;
+int ans = binpeak(a,size);
+cout << "the peak ele is "<< a[ans] << endl;
+}

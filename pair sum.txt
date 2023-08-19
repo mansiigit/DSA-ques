@@ -1,0 +1,21 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int i,j;
+    
+   vector <int> a{1,2,3,4,5};
+   int sum;
+   cin >> sum;
+    for(i=0;i<a.size()-1;i++)
+    {
+        for(j=+1;j<a.size();j++){
+            
+             if(sum==a[i]+a[j])
+             {
+                 cout << a[i] << " ," << a[j] << endl;             }
+             }
+    }
+    return 0;
+}

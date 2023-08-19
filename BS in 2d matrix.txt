@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+bool searchinmatrix(int a[][3],int rows,int column,int target)
+{
+    int s=0;
+    int e=rows*column-1;
+    int mid=s+(e-s)/2;
+     while(s<=e)
+     {
+          mid=s+(e-s)/2;
+        int rowindex=mid/column;
+        int columnindex=mid%column;
+        if(a[rowindex][columnindex]==target){
+            return true;
+        }
+          if(a[rowindex][columnindex]<target){
+          s=mid+1;
+          }
+          else{
+              e=mid-1;
+          }
+          
+     }
+    return false;
+    
+}
+int main()
+{
+    int a[3][3]= {{1,2,3},{4,5,6},{9,7,8}};
+    int row=3;
+    int column=3;
+    int target =10;
+    bool ans = searchinmatrix(a,column,row,target);
+    if(ans)
+    {
+        cout << "found" << endl;
+    }
+    else{
+        cout << "not found" << endl; 
+    }
+}

@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+int findfirstoccurance(vector<int>a,int target)
+{
+    int ans=-1;// if not found than it will return -1 as ans
+  int start=0;
+ int end=a.size()-1;
+
+ while(start<=end){
+       int mid=(start+end)/2;
+     if(target==a[mid])
+     {
+         // store the ans 
+         ans=mid;
+        end=mid-1;// first occurance will always be in the left  if this mid is not the 1st occurance
+     }             // and for last occurance will fepalce thi sline by start=mid+1; becoz end occurance will be at the end i.e right
+     else if(target < a[mid])
+     {
+         
+          end=mid-1;
+          
+     }
+     else if (target > a[mid])
+     {
+          
+          start=mid+1;
+          
+     }
+      
+ }
+   return ans;// time complexity of BS is O(logn)
+     
+ }
+
+ int main(){
+ vector<int>a{1,2,3,4,5,4,7,4,9};
+ int target=7;
+ int ans =findfirstoccurance(a,target);
+ cout << ans << endl;
+ return 0;
+ }

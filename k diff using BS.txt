@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<set>
+int k_diff_BS(vector<int>a,int start,int x)
+{
+   
+    int end=a.size()-1;
+    set<pair<int,int>>ans;
+    while(start<=end){
+        int mid=start+(end-start)/2;
+        if(a[mid]==x)
+        {
+            return mid;
+        }
+        else if(a[mid]>x)
+        {
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
+        }
+    }
+    return -1;
+}
+int kdiff(vector<int>a,int key)
+{
+    
+    set<pair<int,int>>ans;
+            for(int i=0;i<a.size();i++ )
+            {
+                if(k_diff_BS(a,i+1, a[i]+key)!=-1)
+                {
+                    ans.insert({a[i],a[i]+key});
+                }
+            }
+            return ans.size();
+}
+int main(){
+    vector<int>a{1,2,3,4,5,6,7,8,9};
+    int key=2;
+    int ans=kdiff(a,key);
+    cout << "the no. of pairs having 'k' as a diff are: " << ans << endl;
+}

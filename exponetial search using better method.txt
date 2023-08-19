@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+int bs(vector<int>a,int start,int end,int key)
+{
+    while(start<=end)
+    {
+       int  mid=start+(end-start)/2;
+        if(a[mid]==key)
+        {
+            return mid;
+        }
+        else if(a[mid]>key)
+        {
+            end=mid-1;
+        }
+        else
+        {
+            start=mid+1;
+        }
+    }
+    return -1;
+}
+int expo(vector<int>a,int size,int key)
+{
+    int i=0;
+    int j=1;
+    while(a[j]<key)
+    {
+        i=j;
+        j=j*2;
+    }
+    return bs(a, i,j, key);
+}
+int main()
+{
+    vector<int>a{1,2,3,4,5,6,7,8,9};
+    int size=a.size()-1;
+    int key=7;
+    int ans = expo(a,size,key);
+    cout << "the position of key is " << ans << endl;
+    
+}

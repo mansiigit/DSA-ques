@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int i,j;
+    int sum=0;
+    int a[3][3]={{1,2,3},{2,3,4},{5,6,7}};
+    int rows=3;
+    int cols=3;
+    int key;
+    
+    cout<<" enter the key";
+    cin >> key;
+    for(i=0;i<rows;i++)
+    {
+        for(j=0;j<cols;j++)
+        {
+            if(a[i][j]==key)
+            {
+                cout << "key found at (" << i <<","<< j <<")" << endl;
+                return 0;
+            }
+            
+        }
+    }
+            
+            cout << "no"<<endl;
+    
+}

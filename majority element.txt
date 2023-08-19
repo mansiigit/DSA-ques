@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+#include <vector>
+int main()
+{
+    int i,j;
+    int count =0;
+    vector<int>a{4,2,4,4,5,4,4};
+    int size= 6;
+    for(i=0;i<size-1;i++)
+    {
+        for(j=i+1;j<size;j++)
+        {
+        if(a[i]==a[j])
+        {
+            count ++;
+            if(count > (size/2))
+            {
+                cout << a[i] << " is the majority element" << endl;
+                return 0 ;
+            }
+        }
+        
+    }
+}
+}

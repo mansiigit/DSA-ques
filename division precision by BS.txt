@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+#include<math.h>
+int bin_findquotient(int dividend,int divisor )
+{
+    int ans=0;
+    int start=0;
+    int end= abs(dividend);
+    int mid= start+(end-start)/2;
+    while (start <=end)
+    {
+         
+        if (abs(mid*divisor) == abs(dividend))
+        {
+            ans= mid;
+            break;
+        }
+        if(abs(mid*divisor)> abs(dividend))
+        {
+        end=mid-1;
+            
+        }
+        else
+        {
+            ans =mid;
+            start=mid+1;
+
+        }
+        
+        mid= start+(end-start)/2;
+    }
+    if((divisor<0 && dividend<0 ) || (divisor>0 && dividend >0))
+   return ans;
+   else
+   {
+       return -ans;
+   }
+}
+int main()
+{
+    double dec;
+    int i,j;
+  int dividend=5;
+  int divisor =2;
+   int value = bin_findquotient(dividend,divisor);
+   
+   cout << "the quotient is " << value << endl;
+   double final_value=value;
+   cout << "enter the deciaml upto which you want precise value"<<endl;
+   cin  >> dec;
+   double step=0.1;
+   for(i=0;i<=dec;i++)
+   {
+      while((final_value+step)*(divisor) <=dividend)
+      {
+          final_value+=step;
+      }
+      step=step/10;
+   }
+   cout << final_value << endl;
+   
+   return 0;
+}
